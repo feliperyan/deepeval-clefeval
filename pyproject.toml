@@ -1,0 +1,32 @@
+[project]
+name = "deepeval-clef"
+version = "0.1.0"
+description = "Cloudflare Clef decision models as DeepEval judges"
+readme = "README.md"
+authors = [
+    { name = "fryan", email = "fryan@cloudflare.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "deepeval==4.2.8",
+    "httpx",
+]
+
+[project.scripts]
+deepeval-clef = "deepeval_clef.example:main"
+
+[build-system]
+requires = ["uv_build>=0.12.14,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+]
+
+[tool.pytest.ini_options]
+addopts = "-p no:deepeval -p no:rerunfailures"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
